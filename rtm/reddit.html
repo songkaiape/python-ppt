@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Reddit Tree Model</title>
+
+		<meta name="description" content="A model for the generation of REDDIT COMMENT THREAD TREES">
+		<meta name="author" content="Pedro Boueke">
+  		<meta name="keywords" content="reddit,comment,thread,trees,model,complex,networks">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="../reveal/css/reveal.css">
+		<link rel="stylesheet" href="../reveal/css/overwrites.css">
+		<link rel="stylesheet" href="../reveal/css/theme/blood.css" id="theme">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="../reveal/lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../reveal/css/print/pdf.css' : '../reveal/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- SLIDE 1.1 -->
+			<div class="slides">
+				<section  style="-webkit-filter: brightness(150%); filter: brightness(150%);background-image: url('img/M_0.0000100000proot_10000_-1_True.png'); background-size:100% 100%; background-repeat: no-repeat;">
+					<div style="-webkit-filter: brightness(75%);filter: brightness(75%);">
+						<h2>Reddit comment thread trees</h2>
+						<img class="clean-img" src="img/reddit-logo.svg" width="300px"/>
+						<p>
+							<small>Presentation by <a href="http://pboueke.github.io">Pedro Boueke</a>, June 2017 </small>
+						</p>
+					</div>
+				</section>
+
+				<section>
+					<!-- SLIDE 2.1 -->
+					<section>
+						<h3><span><img style="margin:0 20px 0 0;" class="clean-img" src="img/reddit-logo.svg" width="150px"/></span>Reddit?</h3>
+						<blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
+								"The front page of the internet"
+						</blockquote>
+						<p>
+							It's a content centered anonymous social network.
+						</p>
+						<p>
+							7th most popular website on USA, 22th on the world.
+						</p>
+						<h3 class="fragment fade-up">BIG DEAL</h3>
+					</section>
+
+					<!-- SLIDE 2.2 -->
+					<section>
+						<h3>THREADS?</h3>
+						<p>
+							Reddit owes its success to its comments section.
+							Upvotes, downvotes and replies.
+						</p>
+						<br>
+						<span>
+							<img style="margin:0 50px 0 50px;" class="clean-img" src="img/up.png" width="100px"/>
+							<img style="margin:0 50px 0 50px;" class="clean-img" src="img/down.png" width="100px"/>
+						</span>
+					</section>
+
+					<!-- SLIDE 2.3 -->
+					<section>
+						<img style="max-height: 540px; left0;" class="clean-img" src="img/reddit_struct.png"/>
+					</section>
+
+					<!-- SLIDE 2.4 -->
+					<section>
+						<img style="top: 0px; -webkit-transform: rotate(-55deg);transform: rotate(-55deg);width:500px;position:fixed; -webkit-filter: brightness(200%); filter: brightness(200%);" class="clean-img" src="img/0.0010000000proot_1000_-1_True_20170608011453901836_f.png"/>
+						<h3>TREES?</h3>
+						<p>
+							Each thread a tree
+						</p>
+						<p>
+							Each comment a vertex.
+						</p>
+						<p>
+							Each reply an edge.
+						</p>
+					</section>
+					<!-- SLIDE 2.5 -->
+					<section>
+						<img class="clean-img" src="img/real_thread2.png"/>
+					</section>
+					<!-- SLIDE 2.6 -->
+					<section>
+						<h3>A tree shaped graph!</h3>
+						<p>
+							Great for <span class="fragment highlight-blue">modelling</span>.
+						</p>
+						<p>
+							Excellent for a <span class="fragment highlight-blue">mathematical analysis</span>.
+						</p>
+						<p>
+							Interesting <span class="fragment highlight-blue">topological metrics</span>.
+						</p>
+						<p class="fragment fade-up">
+							And more!
+						</p>
+					</section>
+				</section>
+
+				<section>
+					<!-- SLIDE 3.1 -->
+					<section>
+						<h4>But why?</h4>
+						<p class="fragment fade-up"> To create a <span style="color:green;">model</span> capable of representing the <br><span style="color:red;">real thing</span>.</p>
+						<h4>And how?</h4>
+						<p class="fragment fade-up"> Studying the real structures and being clever. </p>
+						<p class="fragment fade-up"> <span style="color:yellow"> (trying to) </span> </p>
+					</section>
+				</section>
+
+				<section>
+					<!-- SLIDE 4.1 -->
+					<section>
+						<h4>THE REAL THING</h4>
+						<p>
+							<a href="https://www.kaggle.com/reddit/reddit-comments-may-2015">Kaggle's May 2015 open comments dataset</a>
+						</p>
+						<blockquote>
+							Get personal with a dataset of comments from May 2015
+						</blockquote>
+						<p class="fragment fade-up">
+							About 15 million comments.<br> ~30GB
+						</p>
+					</section>
+					<!-- SLIDE 4.2 -->
+					<section>
+						<h4> Some interesting facts</h4>
+						<img style="max-height:500px;" src="img/all-comment-component-dist.png"/>
+						<small>Distribution of the number of comments by thread</small>
+					</section>
+
+					<!-- SLIDE 4.3 -->
+					<section>
+						<h4> And more</h4>
+						<p>
+							Power laws <span class="fragment highlight-red">everywhere</span>.
+						</p>
+						<p>
+							Many interesting distributions related to the tree topologies, height density and comment degree.
+						</p>
+						<p class="fragment fade-up">
+							(more [PT-BR] <a href="https://speakerdeck.com/pboueke/redes-complexas-modelo-para-comentarios-do-reddit">here</a>)
+						</p>
+					</section>
+				</section>
+
+				<section>
+					<!-- SLIDE 5.1 -->
+					<section>
+						<h4>Modelling</h4>
+						<p>
+							How to recreate trees with such distributions in your garage?
+						</p>
+						<p>
+							<h4 class="fragment fade-up" style="color:#FF4136;">PREFERENTIAL ATTACHMENT</h4>
+						</p>
+						<p class="fragment fade-up">
+							Think of the <span class="fragment highlight-blue">Barabási-Albert</span> and <span class="fragment highlight-blue">Price</span> models.
+						</p>
+						<p class="fragment fade-up">
+							Now think of <span class="fragment highlight-green">how Reddit is used</span>. How its users behave and how content is ditributed, ranked and shown.
+						</p>
+						<div class="fragment fade-up">
+							<p class="fragment grow"> Perfect</p>
+						</div>
+					</section>
+
+					<!-- SLIDE 5.2 -->
+					<section>
+						<h4> Proposed model</h4>
+						<p>
+							The <b>"R(t,p)"</b> model.<br> <small>A Reddit comment thread tree generating model</small>.
+						</p>
+						<p>
+							A simple aproach on how a reddit user comments.
+						</p>
+						<p>
+							Based on an <span class="fragment highlight-red">interative process</span> of <span class="fragment highlight-red">random walks</span> guided by preferential attachment.
+						</p>
+						<br>
+						<ul class="fragment fade-up">
+							<li><b><span style="color:#FF4136;">t</span></b>: number of iterations</li>
+							<li><b><span style="color:#FF4136;">p</span></b>: a probability function</li>
+						</ul>
+					</section>
+
+					<!-- SLIDE 5.2 -->
+					<section>
+						<h5>INITIALIZATION</h5>
+						<img style="max-height: 540px; left0;" class="clean-img" src="img/RTP_INIT.png"/>
+					</section>
+
+					<!-- SLIDE 5.3 -->
+					<section>
+						<h5>Step</h5>
+						<img style="max-height: 540px; left0;" class="clean-img" src="img/rtp_flowchart.png"/>
+					</section>
+
+					<!-- SLIDE 5.3 -->
+					<section>
+						<img style="max-height: 540px; -webkit-filter: brightness(200%); filter: brightness(200%);" class="clean-img" src="img/bom2_proot_0.001_1000_-1_true_full.gif"/>
+					</section>
+				</section>
+
+				<section>
+					<!-- SLIDE 6.1 -->
+					<section>
+						<h3>Model behaviour</h3>
+						<p>
+							Distinct results for distinct values of <span style="color:red">t</span> and <span style="color:red">p</span>.
+						</p>
+						<img style="max-height: 400px;" class="clean-img" src="img/RC - Trabalho Final variacao n.png"/>
+						<small>
+							Relation between N (size), p and t.
+						</small>
+					</section>
+					<!-- SLIDE 6.2 -->
+					<section>
+							<img style="-webkit-filter: brightness(150%); filter: brightness(150%);max-height: 550px;" class="clean-img" src="img/p1a.png"/>
+					</section>
+					<!-- SLIDE 6.3 -->
+					<section>
+							<img style="max-height: 550px;" class="clean-img" src="img/p2a.png"/>
+					</section>
+					<!-- SLIDE 6.4 -->
+					<section>
+							<h3>And more</h3>
+							<p>
+								Relations between <span style="color:yellow">height</span> and <span style="color:yellow">width</span>.
+							</p>
+							<p>
+								Relations between the parameters: <span style="color:red">t</span> x <span style="color:red">p</span>
+							</p>
+							<ul class="fragment fade-up">
+								<li>Thresholds?</li>
+								<li>Limits?</li>
+							</ul>
+							<p class="fragment fade-up">
+								(more [PT-BR] <a href="https://speakerdeck.com/pboueke/redes-complexas-modelo-para-comentarios-do-reddit">here</a>)
+							</p>
+					</section>
+				</section>
+
+				<section>
+					<!-- SLIDE 7.1 -->
+					<section>
+						<h3>REALITY CHECK</h3>
+						<p class="fragment fade-up">
+						How does the model compare to the real thing?
+						</p>
+					</section>
+					<!-- SLIDE 7.2 -->
+					<section>
+						<h4>Sometimes nicely</h4>
+						<img style="left:0;max-height: 350px;" class="clean-img" src="img/emlif_comments-degree-ccdf.png"/>
+						<img style="right:0;max-height: 350px;" class="clean-img" src="img/p2_comments-degree-ccdf.png"/>
+						<small>Degree distributions for the subreddit r/explainmelikeiamfive and the model for p1:0.001 and t:1000.</small>
+					</section>
+					<!-- SLIDE 7.3 -->
+					<section>
+						<h4>BUT NOT ALWAYS</h4>
+						<p>
+							Can be hard to compare whole subreddits with static parametrizations.
+						</p>
+						<p class="fragment fade-up">
+							Parameters change everything. <span style="color:yellow">Distinct subreddits</span> have <span style="color:yellow">distinct parametrizations</span>.
+						</p>
+						<p class="fragment fade-up">
+							The probability function <span style="color:red">p</span> greatly influences topology.
+						</p>
+						<p class="fragment fade-up">
+							(more [PT-BR] <a href="https://speakerdeck.com/pboueke/redes-complexas-modelo-para-comentarios-do-reddit">here</a>)
+						</p>
+					</section>
+					<!-- SLIDE 7.4 -->
+					<section>
+						<h4>HOW DOES IT LOOK?</h4>
+						<img style="max-height: 500px;" class="clean-img" src="img/small.png"/>
+						<small>
+							Model generated thread (left) with p1:0.001 and t:10000 of size 33 against an average sized thread of r/worldnews (right) with 36 vertexes.
+						</small>
+					</section>
+					<!-- SLIDE 7.5 -->
+					<section>
+						<img style="max-height: 600px;" class="clean-img" src="img/big.png"/>
+						<small>
+							Biggest sized thread of r/worldnews (left) with 8088 vertexes against a tree generated by the model (right) with parameters p2:0.001 and t:20000 of size 8724.
+						</small>
+					</section>
+					<!-- SLIDE 7.6 -->
+					<section>
+						<h4>looking good</h4>
+						<p class="fragment fade-up">
+							Could be better
+						</p>
+					</section>
+				</section>
+
+				<!-- SLIDE 8.1 -->
+				<section>
+					<h1>FUTURE</h1>
+					<p>
+						Test variations of the model. <br>
+						Try new probability functions. <br>
+						More statistical analysis. <br>
+						Analytical studies.
+					</p>
+				</section>
+
+				<!-- SLIDE 9.1 -->
+				<section style="text-align: left">
+					<h3>Thanks</h3>
+					<small>you made it? awesome! here are some <span style="color:red">links</span> for you:</small>
+					<p>
+						Collaborators: <a href="https://github.com/pboueke">pboueke</a> (me) and <a href="https://github.com/Thurler">gthurler</a>. <br>
+						Our <a href="https://github.com/Thurler/reddit-tree-model">repository</a> with a python implementation.<br>
+						[PT-BR] The first <a href="https://speakerdeck.com/pboueke/redes-complexas-modelo-para-comentarios-do-reddit">presentation</a> on the subject.
+					</p>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="../reveal/lib/js/head.min.js"></script>
+		<script src="../reveal/js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: '../reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '../reveal/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					//{ src: '../reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: '../reveal/plugin/pdf-print/pdf-print.js', async: true },
+					{ src: '../reveal/plugin/zoom-js/zoom.js', async: true },
+					{ src: '../reveal/plugin/notes/notes.js', async: true }
+				]
+			});
+			
+			var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = window.location.search.match( /print-pdf/gi ) ? '../reveal/css/print/pdf.css' : '../reveal/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+			
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			  ga('create', 'UA-63582989-1', 'auto');
+			  ga('send', 'pageview');
+		</script>
+
+	</body>
+</html>
